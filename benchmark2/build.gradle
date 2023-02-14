@@ -28,18 +28,12 @@ android {
 
     testOptions {
         managedDevices {
-            // This is the device that will be used for benchmarking. It should be a
-            // representative device for your app's target audience.
-            // You can find a list of available devices by running:
-            //   ./gradlew :benchmark:connectedAndroidTest -Pandroid.test.managed=true
-            //   ./gradlew :benchmark:deviceList
-            // You can also use the Android Device Manager in Android Studio to find
-            // the device name.
-            // See https://developer.android.com/studio/test/managed-devices for more info.
-            //deviceName = "Nexus 5X API 29"
-
             devices {
-                pixel2Api31(ManagedVirtualDevice)
+                pixel2Api31(ManagedVirtualDevice) {  // will be automatically downloaded if not present
+                    device = "Pixel 2"
+                    apiLevel = 31
+                    systemImageSource = "aosp"
+                }
             }
 
         }

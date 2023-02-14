@@ -31,6 +31,20 @@
             </AndroidTestResultsTableState>
           </value>
         </entry>
+        <entry key="-1847973738">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="915X1UW14" value="120" />
+                  <entry key="Duration" value="90" />
+                  <entry key="Google&#10; Pixel 3" value="120" />
+                  <entry key="Tests" value="360" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
         <entry key="-1331383322">
           <value>
             <AndroidTestResultsTableState>
@@ -118,6 +132,34 @@
           </value>
         </entry>
         <entry key="517933333">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="915X1UW14" value="120" />
+                  <entry key="Duration" value="90" />
+                  <entry key="Google&#10; Pixel 3" value="120" />
+                  <entry key="Tests" value="360" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
+        <entry key="1506983397">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="915X1UW14" value="120" />
+                  <entry key="Duration" value="90" />
+                  <entry key="Google&#10; Pixel 3" value="120" />
+                  <entry key="Tests" value="360" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
+        <entry key="1928118526">
           <value>
             <AndroidTestResultsTableState>
               <option name="preferredColumnWidths">

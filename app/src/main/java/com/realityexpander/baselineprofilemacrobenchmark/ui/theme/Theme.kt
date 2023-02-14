@@ -1,4 +1,4 @@
-package com.plcoding.baselineprofilemacrobenchmark.ui.theme
+package com.realityexpander.baselineprofilemacrobenchmark.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme

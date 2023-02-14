@@ -1,4 +1,4 @@
-package com.plcoding.benchmark
+package com.realityexpander.benchmark
 
 import androidx.benchmark.macro.*
 import androidx.benchmark.macro.junit4.BaselineProfileRule
@@ -24,6 +24,34 @@ import org.junit.runner.RunWith
  * for investigating your app's performance.
  */
 
+// 1. Run this test to generate a baseline profile (baseline-prof.txt)
+//    In Run configurations, add the following to the Gradle options:
+//    Gradle Project: BaselineProfileMacrobenchmark
+//    ./gradlew :benchmark:pixel2Api31BenchmarkAndroidTest --rerun-tasks -P android.testInstrumentationRunnerArguments.class=com.realityexpander.benchmark.BaselineProfileGenerator
+//    Run that.
+// 2. Copy benchmark/build/outputs/managed_device_android_test_additional_output/pixel2Api31/BaselineProfileGenerator_generateBaselineProfile-baseline-prof.txt
+//    to /app/baseline-prof.txt
+// Note: may have to `Clean Build` and run this twice. (DON'T ASK ME WHY)
+@RunWith(AndroidJUnit4::class)
+class BaselineProfileGenerator {
+
+    @OptIn(ExperimentalBaselineProfilesApi::class)
+    @get:Rule
+    val baselineRule = BaselineProfileRule()
+
+    @OptIn(ExperimentalBaselineProfilesApi::class)
+    @Test
+    fun generateBaselineProfile() = baselineRule.collectBaselineProfile(
+        packageName = "com.realityexpander.baselineprofilemacrobenchmark",
+    ) {
+        pressHome()
+        startActivityAndWait()
+
+        addElementsAndScrollDown()
+    }
+}
+
+// Regular tests
 @RunWith(AndroidJUnit4::class)
 class ExampleStartupBenchmark {
     @get:Rule
@@ -31,7 +59,7 @@ class ExampleStartupBenchmark {
 
     @Test
     fun startup() = benchmarkRule.measureRepeated(
-        packageName = "com.plcoding.baselineprofilemacrobenchmark",
+        packageName = "com.realityexpander.baselineprofilemacrobenchmark",
         metrics = listOf(StartupTimingMetric()),
         iterations = 5,
         startupMode = StartupMode.COLD
@@ -42,7 +70,7 @@ class ExampleStartupBenchmark {
 
     @Test
     fun scrollAndNavigate() = benchmarkRule.measureRepeated(
-        packageName = "com.plcoding.baselineprofilemacrobenchmark",
+        packageName = "com.realityexpander.baselineprofilemacrobenchmark",
         metrics = listOf(FrameTimingMetric()),
         iterations = 5,
         startupMode = StartupMode.COLD
@@ -56,6 +84,7 @@ class ExampleStartupBenchmark {
 
 
 // Important to use real device for this test
+// 3. Run test to check against benchmark
 @RunWith(AndroidJUnit4::class)
 class ExampleStartupBenchmark2 {
 
@@ -85,7 +114,7 @@ class ExampleStartupBenchmark2 {
     // Tests
 
     fun startup(mode: CompilationMode) = benchmarkRule.measureRepeated(
-        packageName = "com.plcoding.baselineprofilemacrobenchmark",
+        packageName = "com.realityexpander.baselineprofilemacrobenchmark",
         metrics = listOf(StartupTimingMetric()),
         iterations = 5,
         startupMode = StartupMode.COLD,
@@ -96,34 +125,11 @@ class ExampleStartupBenchmark2 {
     }
 
     fun scrollAndNavigate(mode: CompilationMode) = benchmarkRule.measureRepeated(
-        packageName = "com.plcoding.baselineprofilemacrobenchmark",
+        packageName = "com.realityexpander.baselineprofilemacrobenchmark",
         metrics = listOf(FrameTimingMetric()),
         iterations = 5,
         startupMode = StartupMode.COLD,
         compilationMode = mode
-    ) {
-        pressHome()
-        startActivityAndWait()
-
-        addElementsAndScrollDown()
-    }
-}
-
-// Run this test to generate a baseline profile
-// In Run configurations, add the following to the Gradle options:
-// Gradle Project: BaselineProfileMacrobenchmark
-// ./gradlew :benchmark:pixel2Api31BenchmarkAndroidTest --rerun-tasks -P android.testInstrumentationRunnerArguments.class=com.plcoding.benchmark.BaselineProfileGenerator
-@RunWith(AndroidJUnit4::class)
-class BaselineProfileGenerator {
-
-    @OptIn(ExperimentalBaselineProfilesApi::class)
-    @get:Rule
-    val baselineRule = BaselineProfileRule()
-
-    @OptIn(ExperimentalBaselineProfilesApi::class)
-    @Test
-    fun generateBaselineProfile() = baselineRule.collectBaselineProfile(
-        packageName = "com.plcoding.baselineprofilemacrobenchmark",
     ) {
         pressHome()
         startActivityAndWait()

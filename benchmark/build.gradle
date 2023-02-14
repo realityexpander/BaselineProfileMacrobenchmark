@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace 'com.plcoding.benchmark'
+    namespace 'com.realityexpander.benchmark'
     compileSdk 33
 
     compileOptions {

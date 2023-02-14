@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.plcoding.baselineprofilemacrobenchmark'
+    namespace 'com.realityexpander.baselineprofilemacrobenchmark'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.plcoding.baselineprofilemacrobenchmark"
+        applicationId "com.realityexpander.baselineprofilemacrobenchmark"
         minSdk 24
         targetSdk 33
         versionCode 1

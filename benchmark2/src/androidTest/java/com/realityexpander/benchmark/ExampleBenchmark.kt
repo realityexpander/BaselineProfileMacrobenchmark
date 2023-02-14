@@ -1,4 +1,4 @@
-package com.plcoding.benchmark
+package com.realityexpander.benchmark
 
 import android.util.Log
 import androidx.benchmark.junit4.BenchmarkRule
