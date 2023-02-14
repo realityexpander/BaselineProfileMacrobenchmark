@@ -1,0 +1,77 @@
+import com.android.build.api.dsl.ManagedVirtualDevice
+
+plugins {
+    id 'com.android.library'
+    id 'androidx.benchmark'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    namespace 'com.realityexpander.benchmark2'
+    compileSdk 33
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    defaultConfig {
+        minSdk 28
+        targetSdk 33
+
+        testInstrumentationRunner 'androidx.benchmark.junit4.AndroidBenchmarkRunner'
+    }
+
+    testOptions {
+        managedDevices {
+            // This is the device that will be used for benchmarking. It should be a
+            // representative device for your app's target audience.
+            // You can find a list of available devices by running:
+            //   ./gradlew :benchmark:connectedAndroidTest -Pandroid.test.managed=true
+            //   ./gradlew :benchmark:deviceList
+            // You can also use the Android Device Manager in Android Studio to find
+            // the device name.
+            // See https://developer.android.com/studio/test/managed-devices for more info.
+            //deviceName = "Nexus 5X API 29"
+
+            devices {
+                pixel2Api31(ManagedVirtualDevice)
+            }
+
+        }
+//        unitTests {
+//            includeAndroidResources = true
+//        }
+    }
+
+
+    testBuildType = "release"
+    buildTypes {
+        debug {
+            // Since debuggable can"t be modified by gradle for library modules,
+            // it must be done in a manifest - see src/androidTest/AndroidManifest.xml
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "benchmark-proguard-rules.pro"
+        }
+        release {
+            isDefault = true
+        }
+    }
+}
+
+dependencies {
+    androidTestImplementation 'androidx.test:runner:1.5.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.benchmark:benchmark-junit4:1.1.1'
+
+    // Add your dependencies here. Note that you cannot benchmark code
+    // in an app module this way - you will need to move any code you
+    // want to benchmark to a library module:
+    // https://developer.android.com/studio/projects/android-library#Convert
+
+}
